@@ -1,0 +1,91 @@
+@import './reset.css';
+
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f6f9fc;
+  padding-top: 50px;
+}
+
+.canvas {
+  width: 700px;
+  height: 700px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.controls .controls__btns {
+  margin-bottom: 30px;
+}
+
+.controls .controls__btns button {
+  padding: 10px 20px;
+  background-color: #fff;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.controls .controls__btns button:hover,
+.controls .controls__btns button:active {
+  background-color: #efefef;
+}
+
+.controls .controls__btns button:active {
+  transform: scale(0.97);
+}
+
+.controls .controls__btns #jsMode {
+  margin-right: 30px;
+}
+
+.controls .controls__colors {
+  display: flex;
+}
+
+.controls__colors .controls__color {
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.controls__colors .controls__color:not(:last-child) {
+  margin-right: 6px;
+}
+
+.controls__range {
+  margin-bottom: 30px;
+}
+
+.controls__range input {
+  -webkit-appearance: none;
+  outline: none;
+  border-radius: 5px;
+  height: 8px;
+  background-color: #dcdcdc;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.04), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.controls__range input::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background-color: #b4b4b4;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}

@@ -53,6 +53,7 @@ body {
 
 .controls .controls__colors {
   display: flex;
+  margin-bottom: 40px;
 }
 
 .controls__colors .controls__color {

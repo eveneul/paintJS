@@ -10,6 +10,7 @@
 
 const canvas = document.getElementById('jsCanvas')
 const ctx = canvas.getContext('2d') // 2d로 픽셀을 그리겠다는 선언
+const colors = document.getElementsByClassName('js-color')
 
 // The default value of a element 
 canvas.width = document.getElementsByClassName('canvas')[0].offsetWidth;
@@ -47,3 +48,12 @@ if (canvas) {
   canvas.addEventListener('mouseup', stopPainting); // 마우스를 떼면 페인팅 중지
   canvas.addEventListener ('mouseleave', stopPainting) // 마우스가 캔버스를 벗어나면 페인팅 중지
 }
+
+function changeColor(e) {
+  const color = e.target.style.backgroundColor;
+  ctx.strokeStyle = color;
+}
+
+Array.from(colors).forEach(colors => {
+  colors.addEventListener('click', changeColor)
+})

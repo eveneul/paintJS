@@ -21,6 +21,9 @@ const INITIAL_COLOR = "#2c2c2c"
 canvas.width = document.getElementsByClassName('canvas')[0].offsetWidth;
 canvas.height = document.getElementsByClassName('canvas')[0].offsetHeight;
 
+ctx.fillStyle = '#fff';
+ctx.fillRect(0, 0, canvas.width, canvas.height)
+
 ctx.strokeStyle = INITIAL_COLOR // color
 ctx.fillStyle = INITIAL_COLOR
 ctx.lineWidth = 2 // line width

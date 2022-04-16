@@ -11,21 +11,30 @@
 const canvas = document.getElementById('jsCanvas')
 const ctx = canvas.getContext('2d') // 2d로 픽셀을 그리겠다는 선언
 const colors = document.getElementsByClassName('js-color')
+const range = document.getElementById('jsRange')
+const modeBtn = document.getElementById('jsMode')
+const saveBtn = document.getElementById('jsSave')
+
+const INITIAL_COLOR = "#2c2c2c"
 
 // The default value of a element 
 canvas.width = document.getElementsByClassName('canvas')[0].offsetWidth;
 canvas.height = document.getElementsByClassName('canvas')[0].offsetHeight;
 
-ctx.strokeStyle = '#2c2c2c' // color
+ctx.strokeStyle = INITIAL_COLOR // color
+ctx.fillStyle = INITIAL_COLOR
 ctx.lineWidth = 2 // line width
 
-let painting = false;
 
-function startPainting() {
+
+let painting = false;
+let fillingMode = false;
+
+function startPainting() { // painting을 true로
   painting = true;
 }
 
-function stopPainting() {
+function stopPainting() { // painting을 false로
   painting = false;
 }
 
@@ -46,14 +55,56 @@ if (canvas) {
   canvas.addEventListener('mousemove', onMouseMove);
   canvas.addEventListener('mousedown', startPainting); // 마우스를 누르면 페인팅 시작
   canvas.addEventListener('mouseup', stopPainting); // 마우스를 떼면 페인팅 중지
-  canvas.addEventListener ('mouseleave', stopPainting) // 마우스가 캔버스를 벗어나면 페인팅 중지
+  canvas.addEventListener('mouseleave', stopPainting) // 마우스가 캔버스를 벗어나면 페인팅 중지
+  canvas.addEventListener('click', canvasClick)
+}
+
+function canvasClick() {
+  if (fillingMode) {
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+  }
 }
 
 function changeColor(e) {
   const color = e.target.style.backgroundColor;
   ctx.strokeStyle = color;
+  ctx.fillStyle = color;
 }
 
 Array.from(colors).forEach(colors => {
   colors.addEventListener('click', changeColor)
 })
+
+
+if (range) {
+  range.addEventListener('input', function rangeChange(e) {
+  const rangeValue = e.target.value
+  ctx.lineWidth = rangeValue;
+})
+}
+
+
+if (modeBtn) {
+  modeBtn.addEventListener('click', function modeClick() {
+  if (fillingMode == true) {
+    fillingMode = false;
+    modeBtn.innerText = 'Fill'
+  } else {
+    fillingMode = true;
+    modeBtn.innerText = 'Paint'
+  }
+})
+}
+
+
+
+if (saveBtn) {
+  saveBtn.addEventListener('click', function () {
+    const image = canvas.toDataURL('image/png');
+    const link = document.createElement('a')
+
+    link.href = image;
+    link.download = 'Print[🌈]'
+    link.click()
+})
+}
